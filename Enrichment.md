@@ -1,4 +1,7 @@
-#### Revolver
+Parenthetical Examples of character excellence, endurance and tenacity in media. Words of wisdom and encouragement. A library
+
+# Film/Animation/Anime
+## Revolver
 Cast:
 Jason Statham - Jake Green - Black King
 Andre Benjamin - Avi - Black Queen
@@ -25,3 +28,51 @@ Beating your opponent is not the same as winning the game
 
 `When Gon was trying to capture Hishoka's badge, he waited until Hishoka was so wrapped up in his own bloodlust and goals (killing another hunter exam applicant) to attempt to take it. He was unsuccessful but not because he had a bad tactic. Hishoka was just too perceptive. 
 
+
+## Black Clover
+MC - Asta, Yuno
+Black Bulls - 
+
+Yami - Suck it up, dig deep, and push your limits
+
+
+My magic is never giving up. No matter how long it takes. Asta isn't worried about the time it will take. 
+
+tenacity. fortitude. equality
+
+down with the aristocracy
+
+set a crazy goal. if you aren't going to give up, it isn't crazy. 
+
+## Neon Genesis Evangelion
+
+## Code Geass: Lelouche of the Rebellion
+
+## Adventure Time
+- Baby's building a Tower into space. Space is where he's going to find his dad. Daddy's got an arm. And baby's gonna harm that arm by tearing it off his dad.
+- Sucking at something is the first step at being sort of good at something. 
+
+
+## Steven Universe
+
+## Spongebob
+- Indoors
+## The Talented Mr. Ripley
+
+## Fried Green Tomatoes
+
+## Dune
+
+## Sean Connery's James Bond
+
+## Star Wars
+
+# Music
+
+
+# TakeAways/Quotations
+- Things will be alright in the end. If things are not alright, then it is not the end. - The dad from "The Overcoat"
+- I live by two words. Tenacity and Gratitude. Tenacity gets me where I want to go, and gratitude keeps me from being angry along the way. - Henry Winkler aka "The Fonz"
+
+
+When trying to learn a new thing, it is helpful to recap what you know, especially when you are frustrated about the new stuff. The time it takes to understand something by yourself should be held up against any expectations of immediate understanding. Temper your expectations and find comfort in the grace you give yourself by proving to yourself what you do know in relation to the topic. Use it as motivation to continue trying to learn the topic. Fail is where you give up. 
