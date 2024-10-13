@@ -984,9 +984,11 @@ We need to write a function that given a cell in a maze and a string path, check
 that path is legal and picks up all three items. 
 
 `bool isPathToFreedom(MazeCell* startLocation, const std::string& path)`
+we will need `std::string path = "ESNWWNNEWSSESWWN"`
 - break the string into directions
 - NSEW, Which is a valid direction? An invalid direction should give an error message. 
 	- If the direction is valid, move to the next node in the maze.
+	- Some kind of structure to store 
 - recursive function calls because we will need to validate each step
 
 Function takes as input, start location in the maze, and a string of NSEW, then returns whether that path lets you escape from the maze. 
