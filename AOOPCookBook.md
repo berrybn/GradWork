@@ -1043,6 +1043,13 @@ Each node contains two components:
 - doubly linked list - each node contains two pointers: one pointing to the next node and another pointing to the previous node. Motion in both directions top to bottom and bottom to top.
 - circular linked list - the last node points back to the first node, forming a circle -- can be implemented as a singly or doubly linked list. 
 
+```
+struct Node{
+int data;
+Node* next;
+}
+```
+
 # 5 - Header Files/Custom Libraries
 ## Interfaces and Implementation
 When you define a library, you need to give the **interface** - which provides the information clients need to use the library but leaves out the details about how the lib works. The `.h` file the **header file**

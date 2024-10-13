@@ -26,7 +26,7 @@ Letting others make you act out of character, out of yourself, does not
 
 Beating your opponent is not the same as winning the game
 
-`When Gon was trying to capture Hishoka's badge, he waited until Hishoka was so wrapped up in his own bloodlust and goals (killing another hunter exam applicant) to attempt to take it. He was unsuccessful but not because he had a bad tactic. Hishoka was just too perceptive. 
+- #connection When Gon was trying to capture Hishoka's badge, he waited until Hishoka was so wrapped up in his own bloodlust and goals (killing another hunter exam applicant) to attempt to take it. He was unsuccessful but not because he had a bad tactic. Hishoka was just too perceptive. 
 
 
 ## Black Clover
@@ -35,8 +35,8 @@ Black Bulls -
 
 Yami - Suck it up, dig deep, and push your limits
 
-
-My magic is never giving up. No matter how long it takes. Asta isn't worried about the time it will take. 
+"My magic is never giving up. No matter how long it takes."
+Asta isn't worried about time.  
 
 tenacity. fortitude. equality
 
@@ -45,6 +45,7 @@ down with the aristocracy
 set a crazy goal. if you aren't going to give up, it isn't crazy. 
 
 ## Neon Genesis Evangelion
+- How to define your identity without the influence of some one else's perception of you
 
 ## Code Geass: Lelouche of the Rebellion
 
@@ -67,12 +68,13 @@ set a crazy goal. if you aren't going to give up, it isn't crazy.
 
 ## Star Wars
 
-# Music
+## Cigarette as Best Supporting Actor
 
 
 # TakeAways/Quotations
 - Things will be alright in the end. If things are not alright, then it is not the end. - The dad from "The Overcoat"
 - I live by two words. Tenacity and Gratitude. Tenacity gets me where I want to go, and gratitude keeps me from being angry along the way. - Henry Winkler aka "The Fonz"
+- 
 
 
 When trying to learn a new thing, it is helpful to recap what you know, especially when you are frustrated about the new stuff. The time it takes to understand something by yourself should be held up against any expectations of immediate understanding. Temper your expectations and find comfort in the grace you give yourself by proving to yourself what you do know in relation to the topic. Use it as motivation to continue trying to learn the topic. Fail is where you give up. 

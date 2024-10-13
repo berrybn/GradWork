@@ -1,7 +1,7 @@
 CS300/CS500
 Advanced Object-Oriented Programming with C++
 # Lecture 1 - Types, Function Overload, Struct
-- [x] **Write a program that prompts the user for their first name, last name, address, and phone number** ✅ 2024-10-12
+- [x] **Write a program that prompts the user for their first name, last name, address, and phone number** ✅ 2024-10-13
 ```cpp
 #include <iostream>
 #include <string>
@@ -985,6 +985,8 @@ that path is legal and picks up all three items.
 
 `bool isPathToFreedom(MazeCell* startLocation, const std::string& path)`
 - break the string into directions
+- NSEW, Which is a valid direction? An invalid direction should give an error message. 
+	- If the direction is valid, move to the next node in the maze.
 - recursive function calls because we will need to validate each step
 
 Function takes as input, start location in the maze, and a string of NSEW, then returns whether that path lets you escape from the maze. 
@@ -996,4 +998,4 @@ assume start location is not nullptr
 3. N
 4. W
 5. W
-6. NNEWSSESWWN
+6. ...NNEWSSESWWN
