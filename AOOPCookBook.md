@@ -102,6 +102,7 @@ variable that is not changed - `const datatype varName`
 ## Arithmetic Operations: +, -, * , and /
 The standard operators are the same in C++ with the exception of powers and integer division. In C++, dividing $3/2$ will result in 1 instead of 1.5 because the compiler removes the fractional portion of the answer. In addition to division, raising numbers to an exponent is used with `pow(base,exp)` rather than base ** exp or base^exp.   
 
+## Syntax and Tools
 There are mathematical functions that exist within the `#include <cmath>` library
 [[cmath ref]]: (some common functions)
 `abs(x)` 	Returns the absolute value of x
@@ -568,6 +569,10 @@ output will still be 2, 3 because we pass by value, and var1, var2 are overwritt
 
 Passing by reference allows for the creation of direct memory references aka "container variables" that we can empty and fill as we need with the original variable values
 
+
+
+
+
 Arrays as Parameters in Functions:
 array parameters are used to pass an array of values to a function as a parameter
 
@@ -735,7 +740,7 @@ A way to bundle variables -- like a class without the behavior, only the data
 
 We need to keep in mind that defining the struct introduces a new type and does not in itself declare any variables. Once you have the definition, you can use the type name to declare variables, just as you would with any other type. 
 
-**==kind of like custom types?==**
+**kind of like custom types?**
 
 To create a struct, we use the keyword `struct VariableGroupName`
 ```cpp
@@ -1028,7 +1033,15 @@ return 0;
 Unordered Sets
 An unordered_set is an unordered collection of zero or more unique data values of a particular type
 
-
+## Linked Lists
+A linked list is a data structure used to store a collection of elements in a linear order.
+Unlike arrays, which store elements in contiguous memory locations, linked lists consist of nodes that are connected through pointers. 
+Each node contains two components:
+1. data - the value or information that the node holds
+2. pointer or ref - a reference to the next node in the sequence
+- singly linked lists - each node points to the next node in the list, and the last node points to nullptr. Motion in 1 direction from top to bottom. 
+- doubly linked list - each node contains two pointers: one pointing to the next node and another pointing to the previous node. Motion in both directions top to bottom and bottom to top.
+- circular linked list - the last node points back to the first node, forming a circle -- can be implemented as a singly or doubly linked list. 
 
 # 5 - Header Files/Custom Libraries
 ## Interfaces and Implementation
@@ -1082,26 +1095,6 @@ return 0;
 }
 ```
 
-#### Functions
-
-#### Structs
-
-#### Arrays
-
-#### Vectors
-
-#### Maps
-
-#### References
-
-#### Pointers
-
-#### Custom Libraries
-
-#### Classes
-
-
-
 2. Reverse the sequence of elements in an **array:**
 ```cpp
 #include <iostream>
@@ -1145,4 +1138,23 @@ int main()
     return 0;
 } // end the main function
 ```
-3. 
+
+#### Functions
+
+#### Structs
+
+#### Arrays
+
+#### Vectors
+
+#### Maps
+
+#### References
+
+#### Pointers
+
+#### Custom Libraries
+
+#### Classes
+
+

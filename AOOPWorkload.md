@@ -1,7 +1,7 @@
 CS300/CS500
 Advanced Object-Oriented Programming with C++
 # Lecture 1 - Types, Function Overload, Struct
-- [x] **Write a program that prompts the user for their first name, last name, address, and phone number**
+- [x] **Write a program that prompts the user for their first name, last name, address, and phone number** ✅ 2024-10-12
 ```cpp
 #include <iostream>
 #include <string>
@@ -183,18 +183,18 @@ return 0;}
 #include <iostream>
 #include <vector>
 
-void reverse(std::vector , int size)
+void reverse(std::vector& rev , int size)
 {
-
+std::vector reverse;
+for(int i = rev.size()-1; i >=0; i--)
+	{   reverse.push_back(rev[i]);
+		std::cout<<reverse;
+	}
 }
 
 	std::vector<int> nums = {1,2,3,4,5};
 	std::vector<int> reverse;
 	std::cout <<nums.size(5);
-	
-	for(int i = nums.size()-1; i >=0; i--)
-	{   reverse.push_back(nums[i]);
-		std::cout<<reverse;}
 
 int main(){
 
@@ -202,9 +202,9 @@ std::vector  nums= {2,5,7,9,12};
 reverse(nums, n);
 std::cout<<"The reverse of the vector is: ";
 for (int i=0; i<n; i++)
-{ std::cout<<nums<<" "
-
+{ std::cout<< <<" "<<std::endl;
 }
+
 }
 ```
 - [ ] **Write a function merge_sorted that merges two sorted vectors (as a challenge, add the sorted component)**
@@ -272,7 +272,7 @@ Output: 11.99
 - [ ] 2.In the trip.h file include this function prototype: 
 	- [ ] `float moneyEqualizer(std::vector<float> expenses);`
 - [ ] **3.In your trip.cpp file, include a definition to this function. An automated grading system will pass a vector to this function specifying the expenses each person has made during the trip.**
-	- [ ] The function should return the amount of money that needs to change hands such that everyone spent an equal amount of money on the trip.
+	- [x] The function should return the amount of money that needs to change hands such that everyone spent an equal amount of money on the trip. ✅ 2024-10-12
 		- [ ] Note: Do not include a main function in your trip.cpp file. Make sure your function is written exactly as it is above
 - [ ] **4.Create a Makefile with a default target that compiles this project into an executable. The main.cpp and trip.cpp files should only be compiled if changes have been made to the source code since the last compilation.**
 - [ ] 5.Include a run target in your Makefile that compiles your program then runs it.
@@ -946,3 +946,54 @@ choose element in the middle of the range
 if this element is our target, success!
 if element is less than our target, do binary search from middle to end
 
+
+# Lab 7-8
+Trapped in a labyrinth, and only escape is correct path
+spellbook
+potion
+wand
+
+Pointer maze - maze consists of a collection of objects of type MazeCell:
+
+struct MazeCell{
+	Item whatsHere; <- obj to hold whatever item is present, if any
+	MazeCell* north; <- pointer to the north direction variable
+	MazeCell* south;
+	MazeCell* east;
+	MazeCell* west;
+};
+
+Item is of enumerated type: 
+enum class Item{
+	NOTHING, SPELLBOOK, POTION, WAND;
+};
+
+
+The MazeCell you begin at would have its north, south, east, and west pointers pointing
+at MazeCell objects located one step in each of the directions from your start. 
+
+MazeCell containing SPELLBOOK would have its north, east, west pointers set to nullptr
+bc it is a dead end. Similar logic flows througout
+
+There are many paths to exit, we take a string and use the letters as directions:
+"ESNWWNNEWSSESWWN" 
+"SWWNSEENWNNEWSSEES" 
+"WNNEWSSESWWNSEENES"
+
+We need to write a function that given a cell in a maze and a string path, checks whether
+that path is legal and picks up all three items. 
+
+`bool isPathToFreedom(MazeCell* startLocation, const std::string& path)`
+- break the string into directions
+- recursive function calls because we will need to validate each step
+
+Function takes as input, start location in the maze, and a string of NSEW, then returns whether that path lets you escape from the maze. 
+It will work if the path is 1. legal, and 2. the path picks up SPELLBOOK, WAND, and POTION along the way
+
+assume start location is not nullptr
+1. E - first move. If E is valid, move on to next step, else display error messsage
+2. S 
+3. N
+4. W
+5. W
+6. NNEWSSESWWN
