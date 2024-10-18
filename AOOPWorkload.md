@@ -1001,3 +1001,8 @@ assume start location is not nullptr
 4. W
 5. W
 6. ...NNEWSSESWWN
+
+Use the pointer structure to "move" through the maze
+if the pointer goes to a dead end, return false, dead ends are  `nullptr`
+else the pointer goes to a valid direction, and move on to 
+

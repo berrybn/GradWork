@@ -1,34 +1,19 @@
 [[C++]]
 
-- [x] step-1 ✅ 2024-05-21
-	- [x] Creating mesh 1 ✅ 2024-05-21
-		main takeaway: Fill the triangulation with a single cell for a square domain. The triangulation is the refined 4 times, to yield $4^4=256$ cells in total:
-		`GridGenerator::hyper_cube(triangulation);
-		`triangulation.refine_global(4);
-	- [x] creating mesh 2 ✅ 2024-05-21
-		main takeaway: quadrilaterals are only used in Dealii. Refinement towards inner radius was created using a custom function someone made and we just call 
-- [ ] [[step-2]]
-	- [ ] degrees of freedom
-		Main takeaway: degrees of freedom are located at cell nodes
-		
-- [ ] step-3
-	- [ ] integration by parts
-- [ ] step-4
-- [ ] step-5
-- [ ] step-6
-- [ ] step-7
-- [ ] step-8
-- [ ] step-9
-- [ ] step-10
-- [ ] step-11
-- [ ] step-12
-- [ ] step-13
-- [ ] step-14
-- [ ] step-15
-- [ ] step-16
-- [ ] step-17
-- [ ] step-18
-- [ ] step-19
-- [ ] step-20
-- [ ] step-21
-- [ ] step-22
+Governing equations for incompressible flows (no gravity)
+
+$\nabla \cdot u = 0$ 
+$\dfrac{\partial \mathbf{u}}{\partial t}=-\mathbf{u}\cdot\nabla\mathbf{u}+\alpha\nabla^2\mathbf{u}-\dfrac{\nabla p}{\rho}$
+Where 
+1. advection is covered by the $-\mathbf{u} \cdot \nabla \mathbf{u}$ term
+2. diffusion is covered by the $\alpha \nabla^2 \mathbf{u}=\alpha \nabla \cdot \nabla \mathbf{u}$ term
+3. pressure is covered by the $\nabla p/\rho$ term
+
+For incompressible flows, the hydrodynamic pressure projects the velocity field into an incompressible space
+
+Mathematically the system can be interpreted as differential equations with algebraic constraint
+
+The discretized equations can be written as:
+$\mathbf{u}^{n+1} = \mathbf{u}^n+\Delta t(-A^n_{i,j}+D^n_{i,j}) +\Delta t \nabla_{h}P_{i,j}$
+$\nabla \cdot \mathbf{u}^{n+1}=0$
+

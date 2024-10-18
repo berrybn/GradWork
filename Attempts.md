@@ -139,3 +139,14 @@ prototype - `float moneyEqualizer(std::vector<float> expenses);`
 
 main.cpp
 
+P = rows, columns
+
+
+```
+n = i
+r1 = [1,2,3]
+r2 = [2,4,6]
+r3 = [3,6,9]
+
+
+```

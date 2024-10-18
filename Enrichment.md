@@ -1,7 +1,5 @@
-Parenthetical Examples of character excellence, endurance and tenacity in media. Words of wisdom and encouragement. A library
-
-# Film/Animation/Anime
-## Revolver
+Parenthetical Examples of character excellence, endurance and tenacity in media. Words of wisdom and encouragement. A library of connections. 
+# Revolver
 Cast:
 Jason Statham - Jake Green - Black King
 Andre Benjamin - Avi - Black Queen
@@ -29,7 +27,7 @@ Beating your opponent is not the same as winning the game
 - #connection When Gon was trying to capture Hishoka's badge, he waited until Hishoka was so wrapped up in his own bloodlust and goals (killing another hunter exam applicant) to attempt to take it. He was unsuccessful but not because he had a bad tactic. Hishoka was just too perceptive. 
 
 
-## Black Clover
+# Black Clover
 MC - Asta, Yuno
 Black Bulls - 
 
@@ -44,32 +42,32 @@ down with the aristocracy
 
 set a crazy goal. if you aren't going to give up, it isn't crazy. 
 
-## Neon Genesis Evangelion
+# Neon Genesis Evangelion
 - How to define your identity without the influence of some one else's perception of you
 
-## Code Geass: Lelouche of the Rebellion
-
-## Adventure Time
+# Code Geass: Lelouche of the Rebellion
+- calculations and motivations - put up your assets before going to war
+# Adventure Time
 - Baby's building a Tower into space. Space is where he's going to find his dad. Daddy's got an arm. And baby's gonna harm that arm by tearing it off his dad.
 - Sucking at something is the first step at being sort of good at something. 
 
 
-## Steven Universe
+# Steven Universe
 
-## Spongebob
+# Spongebob
 - Indoors
-## The Talented Mr. Ripley
+# The Talented Mr. Ripley
 
-## Fried Green Tomatoes
+# Fried Green Tomatoes
 
-## Dune
+# Dune
 
-## Sean Connery's James Bond
+# Sean Connery's James Bond
 
-## Star Wars
+# Star Wars
 
-## Cigarette as Best Supporting Actor
-
+# Cigarette as Best Supporting Actor
+1. True Detective - Matthew M
 
 # TakeAways/Quotations
 - Things will be alright in the end. If things are not alright, then it is not the end. - The dad from "The Overcoat"
