@@ -7,12 +7,13 @@
 	- $\mathbf{u}(\mathbf{x},t)$ represents the velocity of a particle within the fluid at a specific vector position $\mathbf{x}$, as time progresses, $t$. 
 - **Assumptions**: When studying a physical process or investigating phenomena, it is customary to make assumptions about the physical setting or the equation parameters. This is to focus on the governing equations, relationships between state variables, and the properties of the phenomena itself. 
 	- The equations that we have developed are for "ideal" scenarios that do not mimic the real world conditions. 
-	- Negligible effects of a variable or some physical assumption — incompressibility is an assumption we make for the system -> requires that the divergence of the velocity field is zero everywhere
+	- Negligible effects of a variable or some physical assumption
+		- incompressibility is an assumption we make for the system -> requires that the divergence of the velocity field is zero everywhere
 		- we can make this assumption because compression is negligible
 - to use these formulations for accurate analysis we need to add additional terms, factors to account for these
 - In addition, these additional factors make the formulations nigh impossible to solve with traditional methods...enter computational analysis
 
-- development of an efficient, accurate, and robust computation for **turbulent fluid flow** is ongoing, and is the focus of this work. 
+- **development of an efficient, accurate, and robust computation for turbulent fluid flow is ongoing, and is the focus of this work.** 
 - **Why Numerical Methods:** Since they are Partial Differential Equations, and analytic solutions for these are not always analytically feasible, numerical methods have been developed to approximate solutions, and are the focus of this work. 
 
 For an incompressible fluid, the Navier-Stokes equations can be written as:
@@ -33,24 +34,23 @@ Where
    - Represents the change in momentum of the fluid with respect to time.
    - Captures the unsteady or transient behavior of the fluid flow.
 
-2. **Convective Term: (\rho (\mathbf{u} \cdot \nabla) \mathbf{u})**
+2. **Convective Term: $(\rho (\mathbf{u} \cdot \nabla) \mathbf{u})$**
    - Represents the transport of momentum due to the fluid's velocity field.
    - This term is nonlinear and accounts for the advection of fluid particles, which is a key source of complexity in fluid dynamics.
 
-3. **Pressure Gradient Term: (-\nabla p)**
+3. **Pressure Gradient Term: $(-\nabla p$)**
    - Represents the force exerted by pressure differences within the fluid.
    - Drives the fluid flow from regions of high pressure to low pressure.
 
-4. **Viscous Term: (\mu \nabla^2 \mathbf{u})**
+4. **Viscous Term: $(\mu \nabla^2 \mathbf{u})$**
    - Represents the diffusion of momentum due to viscosity.
    - Accounts for the internal friction within the fluid, which tends to smooth out velocity gradients.
 
 5. **External Force Term: (\mathbf{f})**
    - Represents any external forces acting on the fluid, such as gravity or electromagnetic forces.
    - These forces can influence the motion and behavior of the fluid.
-
+### Boundary and Initial Conditions
  
-
 ## Numerical Analysis of Incompressible Fluid Flow
 
 ### Method of Manufactured Solutions
@@ -75,41 +75,58 @@ We propose an algorithm to compute the homogeneous Newtonian fluid flow that is 
 \end{align}$$
 Here, the vector $\mathbf{u}_t$ represents the unknown time derivative of the velocity field $\mathbf{u}$ at some future time, t. The scalar pressure is given by $p$ and the external force, $\mathbf{f}(\mathbf{x},t,\omega)$. Viscosity, $ν(\mathbf{x},ω)$ is a random field that depends on a spatial variable, the position vector $\mathbf{x}(t)$, and a random variable $ω$ that is taken from a random field, Ω.
 
-We define a complex polyhedral physical domain, $\mathcal{D}⊂R^d$ (d = 2,3) with $∂\mathcal{D}$ on the boundary, where the simulation end-time is represented by T > 0. The vector-valued time derivative for velocity, $\mathbf{u}_t$, is on $\mathcal{D}×(0,T]×Ω ∈R^d$, and the scalar-valued pressure function, p is on D×(0,T] ×Ω ∈R. Specifically, we know that ut is square integrable, that is, L2(D) such that Ω ||ut||2dΩ < ∞.
+We define a complex polyhedral physical domain, $\mathcal{D}⊂R^d$ (d = 2,3) with $∂\mathcal{D}$ on the boundary, where the simulation end-time is represented by T > 0. The vector-valued time derivative for velocity, $\mathbf{u}_t$, is on $\mathcal{D}×(0,T]×Ω ∈R^d$, and the scalar-valued pressure function, p is on D×(0,T] ×Ω ∈R. Specifically, we know that $\mathbf{u}_t$ is square integrable, that is, L2(D) such that Ω ||ut||2dΩ < ∞.
 Velocity belongs to the Hilbert space given by $X := H^1_0(\mathcal{D})$, pressure to the pressure space given by $Q = L^2_0(\mathcal{D})$, and Ω within the stochastic space from which we will select our random variable, $W := L^2_P(Ω)$
 
 Let the inner product in L2(D), be denoted by (·,·). In order to arrive at the weak formulation of our equation, we must multiply by test functions, $ϕ = (v,q)$, and perform integration over the domain Ω. We will take v ∈X and q∈Q. The weak formulation can be thought of as finding u ∈X ⊗W and p∈Q⊗W such that:
 $$(ut,v) + (u ·∇u,v)+(ν∇u,∇v) + (p,∇·v) = (f,v), $$
 $$(∇·u,q) = 0.$$
-Let J be the number of realizations – that is, the number of solutions, for
-the equations. We can rewrite the strong form as: We want to find (uj,pj) such
-that
-uj,t + uj ·∇uj −∇·(νj(x)∇uj) + ∇pj= fj(x,t), in D×(0,T], (1.11)
-∇·uj = 0, in D×(0,T]. (1.12)
-Where uj and pj are the velocity and pressure solutions, respectively. For
-each realization j = 1,2,...J , each corresponding to a kinematic viscosity νj,
-a forcing function fj. Assuming νj(x) ∈L∞(D) and a bounded supremum
-over this domain. Also ν has a minimum, namely νj(x) ≥νj,min > 0 where
-νj,min = min
-νj(x).
-x∈D
-When computing Navier Stokes flow ensembles, even in regular scenarios,
-a single sample can call for many iterations with J different realizations. We
-want to develop an algorithm that will solve this simple case, as well as the case
-of multiple samples, with J different realizations. In numerical simulation of
-flows with incomplete data, quantification of uncertainty, increased forecasting
-skill, quantification of flow sensitivities and other issues lead to the problem of
-computing ensembles uj,pj of solutions of the Navier Stokes equations.”[4] We
-are primarily concerned with the computational complexity for the calculation,
-and we will discretize in such a way that avoids undue computational cost. ”Us-
-ing an implicit-explicit time discretization and keeping the resulting coefficient
-matrix independent of the ensemble member, leads to the method:
+
+Let $\textit{J}$ be the number of realizations -- that is, the number of solutions, for the equations.  We can rewrite the strong form as: We want to find $(\bu_j, p_j)$ such that  
+
+\bu_{j,t} +\bu_j \cdot \nabla \bu_j - \nabla \cdot (\nu_j(\bx)\nabla \bu_j)&+ \nabla p_j=\bif_j(\bx,t),  \hspace{0.5cm} \text{in~} \mathcal{D} \times (0,T],\label{ensembe-1} \\
+    \nabla \cdot \bu_j& = 0,  \hspace{0.5cm} \text{in~} \mathcal{D} \times (0,T].\label{ensembe-2}
+\end{align}
+
+Where $\bu_j$ and $p_j$ are the velocity and pressure solutions, respectively. For each realization $j = 1,2,...\mathit{J},$ each corresponding to a kinematic viscosity $\nu_j$, a forcing function $\bif_j$. Assuming $\nu_j(\bx )\in L^\infty(\mathcal{D})$ and a bounded supremum over this domain. Also $\nu$ has a minimum, namely $\nu_j(\bx)\ge \nu_{j,\text{min}}>0$ where $\nu_{j,\text{min}} = \displaystyle{\min_{\bx\in \mathcal{D}}}\nu_j(\bx)$. 
+
+When computing Navier Stokes flow ensembles, even in regular scenarios, a single sample can call for many iterations with $\mathit{J}$ different realizations. We want to develop an algorithm that will solve this simple case, as well as the case of multiple samples, with $J$ different realizations. In numerical simulation of flows with incomplete data, quantification of uncertainty, increased forecasting skill, quantification of flow sensitivities and other issues lead to the problem of computing ensembles $\bu_j, p_j$ of solutions of the Navier Stokes equations. \say{We are primarily concerned with the computational complexity for the calculation, and we will discretize in such a way that avoids undue computational cost. \cite{jiang2015higher}} Using an implicit-explicit time discretization and keeping the resulting coefficient matrix independent of the ensemble member, leads to the method:
+
+Utilizing the linearized backward Euler method, we propose the following discrete scheme of \eqref{ensembe-1}-\eqref{ensembe-2}: For $j=1,2,\cdots,J$, find $(\bu_{j,h}^{n+1},p_{j,h}^{n+1})$:
+
+\begin{align}
+\frac{\bu_{j,h}^{n+1}}{\Delta t} + <\bu_h>^n \cdot &\nabla \bu_{j,h}^{n+1}-\nabla \cdot (\bar{\nu}\nabla \bu_{j,h}^{n+1}) - \gamma\nabla(\nabla \cdot\bu_{j,h}^{n+1})-\nabla \cdot (2\nu_{T}(\bu^{'}_{h},t^n)\nabla \bu_{j,h}^{n+1}) \nonumber\\
+&+\nabla p_{j,h}^{n+1}=\bif_{j,h}(t^{n+1})+\frac{\bu_{j,h}^n}{\Delta t}-\bu_{j,h}^{'n}\cdot\nabla \bu_{j,h}^n+\nabla\cdot\left(\nu_{j,h}^{'}\nabla \bu_{j,h}^{n}\right),\\
+&\hspace{3.0cm} \nabla \cdot \bu_j^{n+1}=0.
+\end{align}
+
+Here $\bu_{j,h}^{n+1}$ as an approximation for $\bu_j(t^{n+1})$, the present unknown solution, and $h$ is the maximum mesh width.
+
+
+With some algebra, we have moved the present solution to the RHS, added an eddy viscosity term $\nu_T$, which is of $\mathcal{O}(\Delta t)$, having been defined using mixing length phenomenology. We define the ensemble mean as: 
+\begin{equation*}
+<\bu_h>^n:=\frac{1}{J}\sum_{j=1}^{n}\bu^n_{j,h},~/~/~ \bu'^n_{j,h} :=\bu_{j,h}^n-<\bu>^n \end{equation*}
+
+where u
+
+Here, the eddy viscosity, $\nu_T$ is defined as \begin{equation}
+    \nu_t(\bu'_h, t^n):=\mu\Delta t(l^n)^2, /~/~\text{where}~(l^n)^2 =\sum^J_{j=1} |\bu'^n_j|^2.
+\end{equation}
+\say{To reduce the immense computational cost for the above ensemble system, we propose a decoupled scheme together with the breakthrough idea presented in [13]. Thus, we consider a uniform time-step size $\Delta t$ and let $t_n = n\Delta t$ for n=0,1,...\textbf{(suppress the spatial discretization momentarily),} then computing the J solutions independently, takes the following form: for $j=1...J$ } \cite{mohebujjaman2022efficient}
+
+### Jiang Motivations -> Carati sections 2,3
+
+**To accurately model the effects of variable viscosity, we take a random sample of viscosities, and compute their mean.** 
+
 # Notation and Preliminaries
-# Theorem and Proof
-### Taylor Hood Element
+
+## Taylor Hood Element
 The Taylor-Hood element is a mixed finite element method that uses a higher-order polynomial for the velocity field and a lower-order polynomial for the pressure field. This combination helps satisfy the Ladyzhenskaya-Babuška-Brezzi (LBB) condition, ensuring stability and convergence of the solution.
 
 the Taylor-Hood element is used to approximate the velocity and pressure fields in the Navier-Stokes equations. The velocity is typically approximated using a $(Q_{degree+1}^d)$ polynomial, while the pressure is approximated using a $(Q_{degree})$ polynomial.
+
+# Theorem and Proof
+
 # Deal.II implementation
 There are many libraries, software, and packages that have code implementations for utilizing finite elements to find computational solutions for PDEs. Many of these libraries, however, tend to be for use within a specific problem area or physical phenomena, and have not been constructed for a more general, abstracted use. \say{Most available software tools would either be tuned to performance, but be specialized to one class of applications, while others offered flexibility and generality at a significant waste of memory and computing power.} [cite deal.II] deal.II is an open-source, object-oriented C++ library constructed with this issue in mind. It is equipped with templated classes, custom functions and data types that are typically used in finite element analysis problems, and takes advantage of the modular nature of C++ to give the user the ability to use the library for a variety of physical scenarios. Its mission is \say{to provide well-documented tools to build finite element codes for a broad variety of PDEs, from laptops to supercomputers.} [cite deal.ii ] Because deal.II is open source, users can use the library to further develop for their own applications. In this fashion, deal.II addresses the issues of adaptability and implementation across different problem areas. In addition to providing the library, a comprehensive tutorial suite is included. These tutorials have example problems, complete with supporting mathematical theory, error analysis, sample C++ code, visualizations, practical applications and extensions. The code used in this work was written by extending concepts covered in the deal.II tutorial suite.
 - step-3 extensions
@@ -117,7 +134,6 @@ There are many libraries, software, and packages that have code implementations 
 - step-6 extensions
 	- adaptive mesh refinement
 - step-8 extensions
-	- 
 - step-20 extensions
 	- block linear solvers
 - step-29 extensions
@@ -135,6 +151,9 @@ Define the weak form of the pde
 	1. computation of the RHS of the matrix equation
 4. Solving the system (`solve():`) -- the function that computes the solution $\mathbf U$ of the linear system $\mathbf {AU}=\mathbf{F}$ 
 5. print the results (`output_results():`) -- print the results, create a visualization, etc.
+
+## UMFPACK sparse direct solver
+
 # Convergence Rates Test
 Tables and discussion.
 
@@ -148,123 +167,3 @@ A parenthetical example of our experiment is as follows: A cube is generated in 
 After 
 
 ---
-# InfoStream
-
-## Steps 2, 3, and introducing the FEMethod 
-https://dealii.org/current/doxygen/deal.II/step_3.html
-Consider the Poisson eq $$\begin{align}-\Delta u&=f\\ u &=0
-\end{align}$$
-Using the partial differential equation notation:
-$$\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}=f(x,y)$$
-We will solve this equation on the square  $\Omega = [-1,1]^2$. We consider the particular case where $f(\mathbf{x})=1$ and will implement a more general case in step-4.
-
-The steps needed to take to approximate the solution $u$ by a finite dimensional approx. 
-After we define the weak formulation, we use the following steps of the **Finite Element Method**:
-### Using the weak formulation and discretized space:
-  
-1. **Discretize** - Generate a mesh over the domain  (`make_grid():`) #preprocessing
-2. **Create the matrix system** (`steup_system():`) -- This is where the DoFHandler object is initialized and the setup_system function will correctly size the various objects that pertain to the linear algebra #DoF 
-	-  called separately from mesh generation function because it is called repeatedly over any mesh refinements that occur
-3. **Assembling the system** of equations (`assemble_system():`) --computations of the cell matrix and RHS 
-4. **Solving the system** (`solve():`) -- the function that computes the solution $\mathbf U$ of the linear system $\mathbf {AU}=\mathbf{F}$ 
-	1. error calculations, if necessary
-5. **print the results** (`output_results():`) -- print the results, create a visualization, etc.
-
-**All called in the `run():` function** 
-
-### Defining the weak form of the pde
-We obtain the weak form by multiplying the equation by a **test function** $\varphi$ and integrating over the domain $\Omega$ $$-\int_\Omega \varphi \Delta u =\int_\Omega \varphi f $$ and with integration by parts it becomes: $$\int_\Omega \nabla\varphi\cdot\nabla u - \int_\Omega\varphi \mathbf{n} \cdot \nabla u = \int_\Omega \varphi f$$ Here the test function must satisfy the same kind of boundary conditions --that is, it needs to come from the tangent space of the set in which we seek the solution, and so on the boundary $\varphi=0$ and consequently the weak form becomes: $$(\nabla \varphi,\nabla u)=(\varphi, f)$$ where we have used the notation $(a, b)$ to represent $\int_\Omega a~ b$.  We then only need to find a function, $u$ for which the above statement is true, $\forall \varphi \in H^1$
-
-Of course, we can't find such a function, $u$ on a computer in a general case, so we seek an approximation for $u_h(\mathbf{x})=\sum_j U_j \varphi_j(\mathbf{x})$, where the $U_j$ is a vector expansion of coefficients. Because we will compute $U_j$ as the solution of a linear or nonlinear system, they are called "unknowns" or the **degrees of freedom** (number of variables at each mesh node) and $\varphi_j(\mathbf{x})$ are the **finite element shape functions** we will use. 
-
-A mathematical description of finite element problems is often to say that we are looking for a finite dimensional function $𝑢_ℎ∈𝑉_ℎ$ that satisfies some set of equations $𝑎(𝑢_ℎ,𝜑_ℎ)=(𝑓,𝜑_ℎ)$ for all test functions $𝜑_ℎ∈𝑉_ℎ$. In other words, all we say here is that the solution needs to lie in some space $𝑉_ℎ$. 
-
-However, to actually solve this problem on a computer we need to choose a basis of this space; **this is the set of shape functions $𝜑_𝑗(𝐱)$ we have used above in the expansion of $𝑢_ℎ(𝐱)$ with coefficients** $𝑈_𝑗$. There are of course many bases of the space $𝑉_ℎ$, but we will specifically choose the one that is described by the finite element functions that are traditionally defined locally on the cells of the mesh. -- we will use the Lagrange basis. 
-
-- THE SHAPE FUNCTION IS THE INTERPOLANT
-
-Each of these shape functions and degrees of freedom is associated with a vertex of the mesh. Later examples will demonstrate higher order elements where degrees of freedom are not necessarily associated with vertices any more, but can be associated with edges, faces, or cells.
-
-Once we have defined the set of test functions, $\varphi_i$, we can define the weak form of the discrete problem as: Find a function $𝑢_ℎ$, i.e., find the expansion coefficients $𝑈_𝑗$ mentioned above, so that $$(∇𝜑_𝑖,∇𝑢_ℎ)=(𝜑_𝑖,𝑓),~𝑖=0…𝑁−1.$$
-Substituting our representation of $u_h$ in gives: 
-$$\begin{align}
-(∇𝜑_𝑖,∇𝑢_ℎ)&=(∇𝜑_𝑖,∇\big[\sum_𝑗𝑈_𝑗𝜑_𝑗\big])\\
-&=\sum_𝑗(∇𝜑_𝑖,∇[𝑈_𝑗𝜑_𝑗])\\
-&=\sum_𝑗(∇𝜑_𝑖,∇𝜑_𝑗)𝑈_𝑗
-\end{align}$$
-
-With this substitution, the problem reads: Find a vector $𝑈$ so that $$𝐴𝑈=𝐹,$$where the matrix $𝐴$ and the right hand side $𝐹$ are defined as: 
-
-$$\begin{align}
-𝐴_{𝑖𝑗}&=(∇𝜑_𝑖,∇𝜑_𝑗),\\𝐹_𝑖&=(𝜑_𝑖,𝑓)\end{align}$$
-
-**Assembling the matrix and right hand side vector**
-Now we know what we need -- objects that hold the matrix and vectors, as well as ways to compute $𝐴_{𝑖𝑗},~𝐹_𝑖$, and we can look at what it takes to make that happen:
-
-The object for 𝐴 is of type `SparseMatrix` while those for $𝑈$ and $𝐹$ are of type `Vector`. We will see in the program what classes are used to solve linear systems.
-**C++ classes for `dealii` that we need:**
-- We need a way to form the integrals. In the finite element method, this is most commonly done using **quadrature**, i.e. the integrals are replaced by a weighted sum over a set of quadrature points on each cell. That is, we first split the integral over Ω into integrals over all cells, $$\begin{align}𝐴_{𝑖𝑗}=(∇𝜑_𝑖,∇𝜑_𝑗)&=\sum_{𝐾∈𝕋}∫_𝐾∇𝜑_𝑖⋅∇𝜑_𝑗,\\ F_i=(𝜑_𝑖,𝑓)&=\sum_{𝐾∈𝕋}∫_𝐾𝜑_𝑖𝑓
-	\end{align}$$
-    
-    and then approximate each cell's contribution by quadrature:$$\begin{align}𝐴^𝐾_{𝑖𝑗}=∫_𝐾∇𝜑_𝑖⋅∇𝜑_𝑗&≈\sum_𝑞∇𝜑_𝑖(𝐱^𝐾_𝑞)⋅∇𝜑_𝑗(𝐱^𝐾_𝑞)𝑤^𝐾_𝑞,\\ 𝐹^𝐾_𝑖=∫_𝐾𝜑_𝑖𝑓&≈\sum_𝑞𝜑_𝑖(𝐱^𝐾_𝑞)𝑓(𝐱^𝐾_𝑞)𝑤^𝐾_𝑞\end{align}$$where $𝕋≈Ω$ is a `Triangulation` approximating the domain, $𝐱^𝐾_𝑞$ is the 𝑞th quadrature point on cell 𝐾, and $𝑤^𝐾_𝑞$ the 𝑞th quadrature weight ([[Legendre Polynomials]]) . There are different parts to what is needed in doing this, and we will discuss them in turn next.
-	- First, we need a way to describe the location $𝐱^𝐾_𝑞$ of quadrature points and their weights $𝑤^𝐾_𝑞$. They are usually mapped from the reference cell in the same way as shape functions, i.e., implicitly using the `MappingQ1` class or, if you explicitly say so, through one of the other classes derived from `Mapping` (Abstract base class for mapping classes.). 
-	- The locations and weights on the reference cell are described by objects derived from the `Quadrature` base class. Typically, one chooses a quadrature formula (i.e. a set of points and weights) so that the quadrature exactly equals the integral in the matrix; this can be achieved because all factors in the integral are polynomial, and is done by Gaussian quadrature formulas, implemented in the `QGauss` class.
-	- We then need something that can help us evaluate $𝜑_𝑖(𝐱^𝐾_𝑞)$ on cell 𝐾. This is what the `FEValues` class does: it takes a finite element objects to describe 𝜑 on the reference cell, a quadrature object to describe the quadrature points and weights, and a mapping object (or implicitly takes the `MappingQ1` and provides values and derivatives of the shape functions on the real cell 𝐾 as well as all sorts of other information needed for integration, at the quadrature points located on 𝐾.
-
-**Solving the linear system**
-The linear system we end up with here is relatively small -- matrix has a size of $1089 \times 1089$, owing to the fact that the mesh we use is $32 \times 32$ and so there are $32^2=1089$ vertices on the mesh. In later programs, *we regularly solve problems with more than a hundred million equations.* We need to develop a method to solve these linear systems. The first method one typically learns for solving linear systems is **Gaussian elimination**. The problem with this method is that it requires a number of operations that is proportional to $𝑁^3$, where $𝑁$ is the number of equations or unknowns in the linear system – more specifically, the number of operations is $\frac{2}{3}𝑁^3,$ give or take a few. 
-
-With $𝑁=1089$, this means that we would have to do around 861 million operations. This is a number that is quite feasible and it would take modern processors less than 0.1 seconds to do this. But it is clear that this isn't going to scale: If we have twenty times as many equations in the linear system (that is, twenty times as many unknowns), then it would already take 1000-10,000 seconds or on the order of an hour. Make the linear system another ten times larger, and it is clear that we can not solve it any more on a single computer.
-### Sparsity and the Conjugate Gradient Method
-One can rescue the situation somewhat by realizing that only a relatively small number of entries in the matrix are nonzero – that is, the matrix is **sparse**![[sparsity#Definition]]
-Variations of Gaussian elimination can exploit this, making the process substantially faster; we will use one such method – implemented in the `SparseDirectUMFPACK` class – in step-29 for the first time, among several others than come after that. These variations of Gaussian elimination might get us to problem sizes on the order of 100,000 or 200,000, *but not all that much beyond that.*
-
-Instead, what we will do here is take up an idea from 1952: the [Conjugate Gradient method](https://en.wikipedia.org/wiki/Conjugate_gradient_method), or in short "CG". *CG is an "iterative" solver in that it forms a sequence of vectors that converge to the exact solution*; in fact, after 𝑁 such iterations in the absence of roundoff errors it finds the exact solution if the matrix is symmetric and positive definite. The method was originally developed as another way to solve a linear system exactly, like Gaussian elimination, but as such it had few advantages and was largely forgotten for a few decades. But, when computers became powerful enough to solve problems of a size where Gaussian elimination doesn't work well any more (sometime in the 1980s), CG was rediscovered as people realized that it is well suited for large and sparse systems like the ones we get from the finite element method. This is because (i) the vectors it computes converge to the exact solution, and consequently we do not actually have to do all 𝑁 iterations to find the exact solution as long as we're happy with reasonably good approximations; and (ii) it only ever requires matrix-vector products, which is very useful for sparse matrices because a sparse matrix has, by definition, only $\mathcal{O}(𝑁)$ entries and so a matrix-vector product can be done with $\mathcal{O}(𝑁)$ effort whereas it costs $𝑁^2$ operations to do the same for dense matrices. As a consequence, we can hope to solve linear systems with at most $\mathcal{O}(𝑁^2)$ operations, and in many cases substantially fewer.
-
-Finite element codes therefore almost always use iterative solvers such as CG for the solution of the linear systems, and we will do so in this code as well. (We note that the CG method is only usable for matrices that are symmetric and positive definite; for other equations, the matrix may not have these properties and we will have to use other variations of iterative solvers such as [BiCGStab](https://en.wikipedia.org/wiki/Biconjugate_gradient_stabilized_method) or [GMRES](https://en.wikipedia.org/wiki/Generalized_minimal_residual_method) that are applicable to more general matrices.)
-## Vector Valued Problems
-symmetric gradient: 𝐃𝑢 = $\frac{1}{2}$(∇𝐮 + (∇𝐮 )$^𝑇$)
-
-Trial function = f
-test function = v
-Can be viewed as three copies of the scalar space, implemented using FESystem
-
-consider $\mathbf u = (u_1,u_2,u_3)^T$ and $\mathbf v$ accordingly. in coordinates it is: 
-$$𝑎(𝑢,𝑣) = \int_\Omega(∇u_1 ⋅ ∇v_1 + ∇u_2 ⋅ ∇v_2 + ∇u_3 ⋅ ∇v_3 ) 𝑑𝑥 = \int_\Omega(f_1v_1 +f_2v_2 +f_3v_3 ) 𝑑𝑥$$
-
-This is just three copies of the bilinear form of the Laplacian, one applied to each component. We can make this weak form a system of differential equations by choosing special test functions: first choose $\mathbf v = (v_1,0,0)^T$ then $\mathbf v = (0,v_2,0)^T$ and finally $\mathbf v = (0,0,v_3)^T$  to obtain the system:
-$$\begin{matrix}
-(∇u_1, ∇v_1)&&&=(f_1,v_1)\\
-&(∇u_2, ∇v_2)&&=(f_2,v_2)\\
-&&(∇u_3, ∇v_3)&=(f_3,v_3)
-\end{matrix}
-$$
-The solution to the equation we need is of the form:
-$$U = \begin{pmatrix}
-\mathbf u\\
-p
-\end{pmatrix}$$
-with three components: the vector $\mathbf u = (u_1, u_2)$ and one scalar component, $p$ 
-With test functions $$V = \begin{pmatrix}
-\mathbf v\\
-q
-\end{pmatrix}$$
-$\mathbf v$ is the test function for velocity and $q$ is the test function for pressure. 
-$$\begin{align}
-(u_t,v)+(\nabla u, \nabla v)+(u \cdot \nabla u, v)&+(p, \nabla v)=(f,v)\\
-(\nabla u, q)&=0
-\end{align}$$
-It is this form that we will later use in assembling the discrete weak form 
-1. Into a matrix and 
-2. A right hand side vector
-	1. We will have a matrix type solution U that consist of a number of vector components that we can extract. 
-	2. We will have matrix type test functions V that consist of a number of vector components that we can extract. 
-
-FEValuesExtractors obj store which components of the vector-valued finite element constitute a scalar component or a tensor of rank 1(a physical vector always consisting of *dim* components)
-```c
-const FEValuesExtractors::Vector velocities (0);
-    const FEValuesExtractors::Scalar pressure (dim);
-```
-We declare an object that represents the velocities consisting of dim components starting at component zero, and the extractor for the pressure, which is a scalar component at position dim. 
-
-
